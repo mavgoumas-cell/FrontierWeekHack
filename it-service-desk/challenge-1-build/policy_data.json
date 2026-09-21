@@ -1,0 +1,44 @@
+{
+  "policies": [
+    {
+      "policy_id": "POL-ACCESS-001",
+      "title": "Standard Collaboration Application Access",
+      "risk_level": "low",
+      "policy_status": "allowed",
+      "rules": [
+        "The requester must be an identified employee.",
+        "The requested application must be approved as standard for the employee's role or department.",
+        "The request must not include elevated or administrative permissions."
+      ],
+      "allowed_action": "prepare_standard_access",
+      "human_approval_required": false
+    },
+    {
+      "policy_id": "POL-PRIV-002",
+      "title": "Elevated or Administrative Access",
+      "risk_level": "sensitive",
+      "policy_status": "restricted",
+      "rules": [
+        "Administrative or elevated access must not be granted autonomously.",
+        "Privileged system roles require explicit approval by an authorized human IT administrator.",
+        "Security configuration changes and elevated installation rights require human approval."
+      ],
+      "allowed_action": "route_to_authorized_it_admin",
+      "human_approval_required": true
+    },
+    {
+      "policy_id": "POL-EXC-003",
+      "title": "Unsupported, Uncertain, or Policy Exception Requests",
+      "risk_level": "unsupported",
+      "policy_status": "unsupported",
+      "rules": [
+        "If no approved policy applies, the system must not infer authorization.",
+        "If policies conflict or required information is missing, the system must escalate.",
+        "Requests to bypass or ignore policy must not be executed."
+      ],
+      "allowed_action": "escalate_for_human_review",
+      "human_approval_required": true
+    }
+  ]
+}
+
